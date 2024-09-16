@@ -56,11 +56,33 @@
             bindings = <&kp LEFT_SHIFT>, <&caps_word>;
         };
 
-        backspace_hold_or_layer_1: backspace_hold_or_layer_1 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "BACKSPACE_HOLD_OR_LAYER_1";
+        hold_tap_tap_preferred: hold_tap_tap_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_TAP_TAP_PREFERRED";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        th_backspace_layer1: th_backspace_layer1 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TH_BACKSPACE_LAYER1";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+    };
+
+    macros {
+        new_macro: new_macro {
+            compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&lt 1 BACKSPACE>, <&kp BACKSPACE>;
+            bindings = <&lt 1 BACKSPACE>;
+            label = "NEW_MACRO";
         };
     };
 
@@ -69,31 +91,31 @@
 
         Base {
             bindings = <
-&kp GRAVE  &kp N1  &kp N2  &kp N3    &kp N4         &kp N5                                                      &kp N6     &kp N7         &kp N8             &kp N9   &kp N0    &kp EQUAL
-&kp TAB    &kp Q   &kp W   &kp F     &kp P          &kp B                                                       &kp J      &kp L          &kp U              &kp Y    &kp SEMI  &kp SINGLE_QUOTE
-&kp LSHFT  &kp A   &kp R   &kp S     &kp T          &kp G                                                       &kp M      &kp N          &kp E              &kp I    &kp O     &kp MINUS
-&kp LCTRL  &kp Z   &kp X   &kp C     &kp D          &kp V                &kp LBKT                    &kp RBKT   &kp K      &kp H          &kp COMMA          &kp DOT  &kp FSLH  &kp ESCAPE
-                           &kp LALT  &kp LEFT_META  &shift_or_caps_word  &backspace_hold_or_layer_1  &kp SPACE  &lt 2 TAB  &kp RIGHT_ALT  &kp RIGHT_CONTROL
+&none  &kp N1                              &kp N2                              &kp N3                                  &kp N4                                &kp N5                                                   &kp N6     &kp N7                                 &kp N8                                   &kp N9                               &kp N0                               &none
+&none  &kp Q                               &kp W                               &kp F                                   &kp P                                 &kp B                                                    &kp J      &kp L                                  &kp U                                    &kp Y                                &kp SEMI                             &none
+&none  &hold_tap_tap_preferred LEFT_GUI A  &hold_tap_tap_preferred LEFT_ALT R  &hold_tap_tap_preferred LEFT_CONTROL S  &hold_tap_tap_preferred LEFT_SHIFT T  &kp G                                                    &kp M      &hold_tap_tap_preferred RIGHT_SHIFT N  &hold_tap_tap_preferred RIGHT_CONTROL E  &hold_tap_tap_preferred RIGHT_ALT I  &hold_tap_tap_preferred RIGHT_GUI O  &none
+&none  &kp Z                               &kp X                               &kp C                                   &kp D                                 &kp V       &none                             &none      &kp K      &kp H                                  &kp COMMA                                &kp DOT                              &kp FSLH                             &none
+                                                                               &kp LALT                                &kp LEFT_META                         &kp ESCAPE  &th_backspace_layer1 1 BACKSPACE  &kp SPACE  &lt 2 TAB  &kp RIGHT_ALT                          &kp RIGHT_CONTROL
             >;
         };
 
         Navigation {
             bindings = <
-&trans  &kp F1              &kp F2            &kp F3              &kp F4         &kp F5                      &kp F6         &kp F7    &kp F8  &kp F9    &kp F10    &trans
-&trans  &trans              &kp LA(UP_ARROW)  &kp LA(DOWN)        &trans         &kp F11                     &kp F12        &trans    &trans  &trans    &trans     &trans
-&trans  &kp LC(LEFT_ARROW)  &kp LC(UP_ARROW)  &kp LC(DOWN_ARROW)  &kp LC(RIGHT)  &trans                      &trans         &kp LEFT  &kp UP  &kp DOWN  &kp RIGHT  &trans
-&trans  &kp HOME            &kp PAGE_DOWN     &kp PAGE_UP         &kp END        &trans   &trans  &tog 3     &trans         &trans    &trans  &trans    &trans     &kp ENTER
-                                              &trans              &trans         &trans   &trans  &kp ENTER  &kp RA(ENTER)  &trans    &trans
+&trans  &kp F1              &kp F2            &kp F3              &kp F4         &kp F5                      &kp F6         &kp F7              &kp F8            &kp F9              &kp F10              &trans
+&trans  &trans              &kp LA(UP_ARROW)  &kp LA(DOWN)        &trans         &kp F11                     &kp F12        &kp LA(LEFT_ARROW)  &kp LA(UP_ARROW)  &kp LA(DOWN_ARROW)  &kp LA(RIGHT_ARROW)  &trans
+&trans  &kp LC(LEFT_ARROW)  &kp LC(UP_ARROW)  &kp LC(DOWN_ARROW)  &kp LC(RIGHT)  &trans                      &trans         &kp LEFT            &kp UP            &kp DOWN            &kp RIGHT            &trans
+&trans  &kp HOME            &kp PAGE_DOWN     &kp PAGE_UP         &kp END        &trans   &trans  &tog 3     &trans         &trans              &trans            &trans              &trans               &kp ENTER
+                                              &trans              &trans         &trans   &trans  &kp ENTER  &kp RA(ENTER)  &trans              &trans
             >;
         };
 
         Symbols {
             bindings = <
-&trans  &trans     &trans     &trans                &trans             &trans                                       &trans            &trans            &trans            &trans            &trans            &trans
-&trans  &kp LS(Q)  &kp LS(W)  &kp LS(F)             &kp LS(P)          &kp LS(B)                                    &kp LS(NUMBER_6)  &kp LS(NUMBER_7)  &kp LS(NUMBER_8)  &kp LS(NUMBER_9)  &kp LS(NUMBER_0)  &trans
-&trans  &kp RS(A)  &kp RS(R)  &kp LEFT_BRACKET      &kp RIGHT_BRACKET  &kp RS(NUMBER_9)                             &kp GRAVE         &kp EQUAL         &kp APOS          &kp MINUS         &kp BSLH          &trans
-&trans  &kp RS(Z)  &kp RS(X)  &kp RS(LEFT_BRACKET)  &kp RS(RBKT)       &kp RS(N0)        &trans             &trans  &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(NUMBER_3)  &kp LS(NUMBER_4)  &kp LS(N5)        &trans
-                              &trans                &trans             &trans            &kp RG(BACKSPACE)  &trans  &trans            &trans            &trans
+&trans  &trans  &trans            &trans             &trans                &trans                             &trans            &trans            &trans            &trans            &trans            &trans
+&trans  &trans  &trans            &trans             &trans                &trans                             &kp LS(NUMBER_6)  &kp LS(NUMBER_7)  &kp LS(NUMBER_8)  &kp LS(NUMBER_9)  &kp LS(NUMBER_0)  &trans
+&trans  &trans  &kp RS(NUMBER_9)  &kp LEFT_BRACKET   &kp RS(LEFT_BRACKET)  &trans                             &kp GRAVE         &kp EQUAL         &kp APOS          &kp MINUS         &kp BSLH          &trans
+&trans  &trans  &kp RS(NUMBER_0)  &kp RIGHT_BRACKET  &kp RS(RBKT)          &trans  &trans             &trans  &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(NUMBER_3)  &kp LS(NUMBER_4)  &kp LS(N5)        &trans
+                                  &trans             &trans                &trans  &kp RG(BACKSPACE)  &trans  &trans            &trans            &trans
             >;
         };
 
