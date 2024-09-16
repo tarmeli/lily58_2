@@ -81,6 +81,8 @@
             label = "BACKSPACE_DOUBLE_TAP";
             #binding-cells = <0>;
             bindings = <&th_backspace_layer1 1 BACKSPACE>, <&kp BACKSPACE>;
+
+            tapping-term-ms = <400>;
         };
     };
 
