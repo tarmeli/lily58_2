@@ -90,6 +90,8 @@
             label = "ESC_OR_SHIFTSHIFT";
             #binding-cells = <0>;
             bindings = <&kp ESCAPE>, <&shiftshift>;
+
+            tapping-term-ms = <300>;
         };
     };
 
