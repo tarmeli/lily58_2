@@ -84,14 +84,21 @@
 
             tapping-term-ms = <400>;
         };
+
+        esc_or_shiftshift: esc_or_shiftshift {
+            compatible = "zmk,behavior-tap-dance";
+            label = "ESC_OR_SHIFTSHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp ESCAPE>, <&shiftshift>;
+        };
     };
 
     macros {
-        new_macro: new_macro {
+        shiftshift: shiftshift {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&lt 1 BACKSPACE>;
-            label = "NEW_MACRO";
+            bindings = <&kp LEFT_SHIFT &kp LEFT_SHIFT>;
+            label = "SHIFTSHIFT";
         };
     };
 
@@ -100,11 +107,11 @@
 
         Base {
             bindings = <
-&none  &kp N1                              &kp N2                              &kp N3                                  &kp N4                                &kp N5                                        &kp N6     &kp N7                                 &kp N8                                   &kp N9                               &kp N0                               &none
-&none  &kp Q                               &kp W                               &kp F                                   &kp P                                 &kp B                                         &kp J      &kp L                                  &kp U                                    &kp Y                                &kp SEMI                             &none
-&none  &hold_tap_tap_preferred LEFT_GUI A  &hold_tap_tap_preferred LEFT_ALT R  &hold_tap_tap_preferred LEFT_CONTROL S  &hold_tap_tap_preferred LEFT_SHIFT T  &kp G                                         &kp M      &hold_tap_tap_preferred RIGHT_SHIFT N  &hold_tap_tap_preferred RIGHT_CONTROL E  &hold_tap_tap_preferred RIGHT_ALT I  &hold_tap_tap_preferred RIGHT_GUI O  &none
-&none  &kp Z                               &kp X                               &kp C                                   &kp D                                 &kp V       &none                  &none      &kp K      &kp H                                  &kp COMMA                                &kp DOT                              &kp FSLH                             &none
-                                                                               &kp LALT                                &kp LEFT_META                         &kp ESCAPE  &backspace_double_tap  &kp SPACE  &lt 2 TAB  &kp RIGHT_ALT                          &kp RIGHT_CONTROL
+&none  &kp N1                              &kp N2                              &kp N3                                  &kp N4                                &kp N5                                                &kp N6     &kp N7                                 &kp N8                                   &kp N9                               &kp N0                               &none
+&none  &kp Q                               &kp W                               &kp F                                   &kp P                                 &kp B                                                 &kp J      &kp L                                  &kp U                                    &kp Y                                &kp SEMI                             &none
+&none  &hold_tap_tap_preferred LEFT_GUI A  &hold_tap_tap_preferred LEFT_ALT R  &hold_tap_tap_preferred LEFT_CONTROL S  &hold_tap_tap_preferred LEFT_SHIFT T  &kp G                                                 &kp M      &hold_tap_tap_preferred RIGHT_SHIFT N  &hold_tap_tap_preferred RIGHT_CONTROL E  &hold_tap_tap_preferred RIGHT_ALT I  &hold_tap_tap_preferred RIGHT_GUI O  &none
+&none  &kp Z                               &kp X                               &kp C                                   &kp D                                 &kp V               &none                  &none      &kp K      &kp H                                  &kp COMMA                                &kp DOT                              &kp FSLH                             &none
+                                                                               &kp LALT                                &kp LEFT_META                         &esc_or_shiftshift  &backspace_double_tap  &kp SPACE  &lt 2 TAB  &kp RIGHT_ALT                          &kp RIGHT_CONTROL
             >;
         };
 
