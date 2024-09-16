@@ -82,7 +82,7 @@
             #binding-cells = <0>;
             bindings = <&th_backspace_layer1 1 BACKSPACE>, <&kp BACKSPACE>;
 
-            tapping-term-ms = <400>;
+            tapping-term-ms = <200>;
         };
 
         esc_or_shiftshift: esc_or_shiftshift {
